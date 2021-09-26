@@ -9,7 +9,18 @@ h2o.group_apply <- function(data, by, fun, ...){
     group_rows <- as.vector(h2o.which(data[[by]] == group))
     temp <- data[group_rows, ]
     temp <- fun(temp, ...)
-    data[group_rows, colnames(temp)] <- temp
+    # for the first group of by, define temp_names and initialize any new columns
+    if(group == unique_values[1]){
+      temp_names <- colnames(temp)
+      data_names <- colnames(data)
+      new_cols <- setdiff(temp_names, data_names)
+      if(length(new_cols) > 0){
+        for(column in new_cols){
+          data[, column] <- NA
+        }
+      }
+    }
+    data[group_rows, temp_names] <- temp
   }
   return(data)
 }
