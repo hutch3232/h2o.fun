@@ -56,3 +56,11 @@ h2o.group_by(mt_adj,
 2   6        1
 3   8        1
 ```
+
+#### `h2o.setnames`
+#### Example Usage
+The purpose of this function is to make it easy to update h2o column names. It uses the same syntax as `data.table::setnames` and has similar behavior. One obvious difference is that this function does not update by-reference. That means you have to return the full data and assign it. This function also supports `data.frame`. Values of `old` not in `data` will be ignored if `skip_absent = TRUE`. 
+```
+# Assuming h2o is initialized and is.h2o(mtcars) as in the prior example
+mtcars <- h2o.setnames(data = mtcars, old = c("a", "mpg"), new = c("b", "new_mpg"), skip_absent = TRUE)
+```
