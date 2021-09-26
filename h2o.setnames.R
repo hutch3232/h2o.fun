@@ -24,18 +24,5 @@ h2o.setnames <- function(data, old, new, skip_absent=FALSE){
     }
     colnames(data)[name_positions] <- new
   }
-  
-  # assign(x = deparse(substitute(data)), value = data, pos = parent.frame())
-  # return(invisible(NULL))
   return(data)
 }
-
-h2o.setnames(data = mtcars, old = "a", new = "b", skip_absent = "HI")
-h2o.setnames(data = mtcars, old = "a", skip_absent = F)
-h2o.setnames(data = mtcars, new = "a", skip_absent = F)
-h2o.setnames(data = matrix(NA), old = "a", new = "b", skip_absent = F)
-h2o.setnames(data = mtcars, old = "a", new = c("b", "c"), skip_absent = FALSE)
-h2o.setnames(data = mtcars, old = "a", new = "b", skip_absent = FALSE)
-h2o.setnames(data = mtcars, old = "a", new = "b", skip_absent = TRUE)
-h2o.setnames(data = mtcars, old = c("a", "mpg"), new = c("b", "new_mpg"), skip_absent = TRUE)
-h2o.setnames(data = mtcars, old = "mpg", new = c("a"), skip_absent = FALSE)
